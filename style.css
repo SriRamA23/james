@@ -1,0 +1,132 @@
+/* General page styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #718b8b; /* Light cyan background */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+/* Container styling */
+.container {
+    background: rgba(222, 243, 243, 0.95);
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 6px 26px rgba(26, 192, 226, 0.789);
+    animation: fadeIn 1s ease-in-out;
+}
+
+
+h1 {
+    color: #18cadd;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+
+input[type="text"],
+input[type="number"] {
+    padding: 15px;
+    margin: 10px 0;
+    width: 80%;
+    border: 1px solid #f7f4f4;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+    border-color: #0288d1; /* Dark cyan */
+    box-shadow: 0 0 10px rgba(2, 136, 209, 0.5);
+    outline: none;
+}
+
+/* Button styling */
+button {
+    padding: 15px 20px;
+    background: rgb(26, 209, 230); /* Dark cyan */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background: #06c6fb; /* Lighter cyan */
+    transform: translateY(-2px);
+}
+
+/* View inventory button */
+.view-inventory-button {
+    display: block;
+    margin-top: 15px;
+    background: rgb(26, 209, 230); /* Dark cyan */
+    color: rgb(238, 242, 243);
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.view-inventory-button:hover {
+    background: #06c6fb; /* Lighter cyan */
+}
+
+/* Table styling */
+.inventory-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.inventory-table th,
+.inventory-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 2px solid #ffccdc; /* Light pink border for table rows */
+}
+
+.inventory-table th {
+    background-color: #ffebee; /* Light pink background for header */
+    color: #10656b; /* Pink text color */
+    font-size: 1.2em; /* Slightly larger font for header */
+}
+
+.inventory-table tr:hover {
+    background-color:hsl(339, 100%, 94%); /* Light pink hover effect */
+}
+
+/* Inventory item button styling */
+.inventory-item button {
+    padding: 8px 12px;
+    background: #08f1af; /* Pink */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.inventory-item button:hover {
+    background: #07d0fe; /* Lighter pink on hover */
+}

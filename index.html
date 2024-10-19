@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Inventory Management</h1>
+
+        <form id="inventoryForm">
+            <input type="hidden" id="itemIndex">
+            <input type="text" id="itemName" placeholder="Item Name" required>
+            <input type="number" id="itemQuantity" placeholder="Quantity" required>
+            <input type="number" id="itemPrice" placeholder="Price" required>
+            <button type="submit">Save Item</button>
+        </form>
+
+        <div class="actions">
+            <a href="inventory.html" class="view-inventory-button">View Inventory</a>
+        </div>
+    </div>
+
+    <script>
+        const inventoryForm = document.getElementById('inventoryForm');
+        const itemNameInput = document.getElementById('itemName');
+        const itemQuantityInput = document.getElementById('itemQuantity');
+        const itemPriceInput = document.getElementById('itemPrice');
+        const itemIndexInput = document.getElementById('itemIndex');
+
+        let inventory = JSON.parse(localStorage.getItem('inventory')) || [];
+
+        // Check if editing an item
+        const editItem = JSON.parse(localStorage.getItem('editItem'));
+        const editIndex = localStorage.getItem('editIndex');
+
+        if (editItem) {
+            itemNameInput.value = editItem.name;
+            itemQuantityInput.value = editItem.quantity;
+            itemPriceInput.value = editItem.price;
+            itemIndexInput.value = editIndex;
+            // Clear the local storage after reading the data
+            localStorage.removeItem('editItem');
+            localStorage.removeItem('editIndex');
+        }
+
+        inventoryForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const name = itemNameInput.value;
+            const quantity = itemQuantityInput.value;
+            const price = itemPriceInput.value;
+            const index = itemIndexInput.value;
+
+            if (index === '') {
+                // Add new item
+                inventory.push({ name, quantity, price });
+            } else {
+                // Update existing item
+                inventory[index] = { name, quantity, price };
+            }
+
+            localStorage.setItem('inventory', JSON.stringify(inventory));
+            inventoryForm.reset();
+            window.location.href = 'inventory.html'; // Redirect to inventory page
+        });
+    </script>
+</body>
+</html>

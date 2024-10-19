@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Inventory List</h1>
+        <table class="inventory-table" id="inventoryTable">
+            <thead>
+                <tr>
+                    <th>Item Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="inventoryList">
+                <!-- Inventory items will be loaded dynamically -->
+            </tbody>
+        </table>
+        <div class="actions">
+            <a href="index.html" class="view-inventory-button">Add New Items</a>
+        </div>
+    </div>
+
+    <script>
+        const inventoryList = document.getElementById('inventoryList');
+        let inventory = JSON.parse(localStorage.getItem('inventory')) || [];
+
+        function loadInventory() {
+            inventoryList.innerHTML = '';
+            inventory.forEach((item, index) => {
+                const inventoryItem = document.createElement('tr');
+                
+                inventoryItem.innerHTML = `
+                    <td><strong>${item.name}</strong></td>
+                    <td>${item.quantity}</td>
+                    <td>$${item.price}</td>
+                    <td>
+                        <button onclick="editItem(${index})">Edit</button>
+                        <button onclick="deleteItem(${index})">Delete</button>
+                    </td>
+                `;
+
+                inventoryList.appendChild(inventoryItem);
+            });
+        }
+
+        function editItem(index) {
+            // Set item details in local storage for editing
+            const item = inventory[index];
+            localStorage.setItem('editItem', JSON.stringify(item));
+            localStorage.setItem('editIndex', index);
+            // Redirect to the form page for editing
+            window.location.href = 'index.html';
+        }
+
+        function deleteItem(index) {
+            inventory.splice(index, 1); // Remove the item from the inventory
+            localStorage.setItem('inventory', JSON.stringify(inventory)); // Update local storage
+            loadInventory(); // Reload the inventory to reflect changes
+        }
+
+        loadInventory();
+    </script>
+</body>
+</html>
